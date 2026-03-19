@@ -10,4 +10,3 @@ export const updateQuantity = (id, quantity) => axios.patch(`${BASE}/list/${id}/
 export const removeItem = (id) => axios.delete(`${BASE}/list/${id}`)
 export const clearList = () => axios.delete(`${BASE}/list`)
 export const createProduct = (data) => axios.post(`${BASE}/products`, data)
-```
