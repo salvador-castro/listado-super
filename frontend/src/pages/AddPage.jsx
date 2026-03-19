@@ -62,17 +62,26 @@ export default function AddPage() {
         reader.decodeFromStream(stream, videoRef.current, async (result, err) => {
           if (result && active) {
             const code = result.getText()
-            stopScanner()
-            setQuery(code)
-            setLoading(true)
-            try {
-              const res = await searchProducts(code)
-              setResults(res.data)
-              if (res.data.length === 0) {
-                setNewProduct(prev => ({ ...prev, barcode: code }))
+            if (scanningBarcode) {
+              // Escaneando desde el formulario: solo rellena el campo
+              setNewProduct(prev => ({ ...prev, barcode: code }))
+              setScanningBarcode(false)
+              stopScanner()
+            } else {
+              // Escaneando desde el buscador principal
+              stopScanner()
+              setQuery(code)
+              setLoading(true)
+              try {
+                const res = await searchProducts(code)
+                setResults(res.data)
+                if (res.data.length === 0) {
+                  setNewProduct(prev => ({ ...prev, barcode: code }))
+                  setShowForm(true)
+                }
+              } finally {
+                setLoading(false)
               }
-            } finally {
-              setLoading(false)
             }
           }
         })
@@ -125,6 +134,8 @@ export default function AddPage() {
       alert('Error al crear el producto')
     }
   }
+
+  const [scanningBarcode, setScanningBarcode] = useState(false)
 
   return (
     <div className="add-page">
@@ -196,12 +207,14 @@ export default function AddPage() {
         <div className="no-results">
           <div className="no-results-icon">🔎</div>
           <p>No encontramos <strong>"{query}"</strong></p>
-          <span>¿Es un producto nuevo?</span>
+          {query.match(/^\d{6,}$/) && (
+            <span className="barcode-hint">📦 Código de barras no registrado</span>
+          )}
           <button className="btn-create" onClick={() => {
             setShowForm(true)
             setNewProduct(p => ({ ...p, barcode: query.match(/^\d+$/) ? query : '' }))
           }}>
-            + Crear producto nuevo
+            + Agregar producto nuevo
           </button>
         </div>
       )}
@@ -215,8 +228,23 @@ export default function AddPage() {
           </div>
           <input placeholder="Nombre *" value={newProduct.name} onChange={e => setNewProduct({ ...newProduct, name: e.target.value })} />
           <input placeholder="Marca" value={newProduct.brand} onChange={e => setNewProduct({ ...newProduct, brand: e.target.value })} />
-          <input placeholder="Código de barras" value={newProduct.barcode} onChange={e => setNewProduct({ ...newProduct, barcode: e.target.value })} />
-          <input placeholder="Unidad (500g, 1L, unidad...)" value={newProduct.unit} onChange={e => setNewProduct({ ...newProduct, unit: e.target.value })} />
+          <div className="barcode-input-row">
+            <input
+              placeholder="Código de barras"
+              value={newProduct.barcode}
+              onChange={e => setNewProduct({ ...newProduct, barcode: e.target.value })}
+            />
+            <button
+              className="btn-scan-barcode"
+              onClick={() => {
+                setScanningBarcode(true)
+                setScanning(true)
+              }}
+              title="Escanear código"
+            >
+              📷
+            </button>
+          </div>          <input placeholder="Unidad (500g, 1L, unidad...)" value={newProduct.unit} onChange={e => setNewProduct({ ...newProduct, unit: e.target.value })} />
           <div className="category-grid">
             {CATEGORIES.map(c => (
               <button

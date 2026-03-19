@@ -179,3 +179,20 @@
 }
 .btn-create-submit:hover { background: #2d2d4e; }
 .btn-create-submit:disabled { opacity: .4; cursor: not-allowed; }
+
+.barcode-input-row {
+  display: flex; gap: 8px; align-items: center;
+}
+.barcode-input-row input { flex: 1; }
+.btn-scan-barcode {
+  width: 44px; height: 44px; background: #f0f4f8; border: 1.5px solid #eee;
+  border-radius: 10px; font-size: 1.1rem; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background .2s;
+}
+.btn-scan-barcode:hover { background: #e0e8f0; }
+
+.barcode-hint {
+  font-size: .82rem; color: #e65100; background: #fff3e0;
+  padding: 4px 12px; border-radius: 20px;
+}
