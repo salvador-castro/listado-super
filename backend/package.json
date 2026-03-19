@@ -7,12 +7,12 @@
     "start": "node index.js"
   },
   "dependencies": {
-    "cors": "...",
-    "dotenv": "...",
-    "express": "...",
-    "mongoose": "..."
+    "cors": "*",
+    "dotenv": "*",
+    "express": "*",
+    "mongoose": "*"
   },
   "devDependencies": {
-    "nodemon": "..."
+    "nodemon": "*"
   }
 }
