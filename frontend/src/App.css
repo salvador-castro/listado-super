@@ -1,0 +1,9 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f0f4f8; color: #1a1a2e; min-height: 100vh; }
+.app { max-width: 480px; margin: 0 auto; min-height: 100vh; background: white; }
+.app-header { background: #1a1a2e; color: white; padding: 16px 20px 0; position: sticky; top: 0; z-index: 100; }
+.app-header h1 { font-size: 1.4rem; margin-bottom: 12px; }
+nav { display: flex; }
+nav a { flex: 1; text-align: center; padding: 12px; color: rgba(255,255,255,.6); text-decoration: none; font-size: .9rem; border-bottom: 3px solid transparent; transition: all .2s; }
+nav a.active { color: white; border-bottom-color: #4fc3f7; }
+main { padding: 20px; }

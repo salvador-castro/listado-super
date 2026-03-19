@@ -1,0 +1,23 @@
+.list-page { padding-bottom: 40px; }
+.list-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+.list-stats { font-size: .85rem; color: #888; display: flex; gap: 6px; }
+.dot { color: #ccc; }
+.btn-clear { background: none; border: 1px solid #ffcdd2; color: #c62828; padding: 6px 12px; border-radius: 8px; cursor: pointer; font-size: .8rem; }
+.empty-state { text-align: center; padding: 60px 20px; color: #bbb; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.empty-state span { font-size: 3rem; }
+.empty-state p { font-size: 1.1rem; color: #888; }
+.category-group { margin-bottom: 24px; }
+.category-title { font-size: .8rem; text-transform: uppercase; letter-spacing: .08em; color: #888; padding: 6px 0; margin-bottom: 8px; border-bottom: 1px solid #f0f0f0; }
+.item-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+.list-item { display: flex; align-items: center; gap: 10px; padding: 12px 14px; border-radius: 10px; border: 1px solid #eee; background: #fafafa; transition: opacity .2s, background .2s; }
+.list-item.checked { opacity: .5; background: #f5f5f5; }
+.list-item.checked .item-info strong { text-decoration: line-through; }
+.check-btn { background: none; border: none; cursor: pointer; font-size: 1.2rem; padding: 0; }
+.item-info { flex: 1; display: flex; flex-direction: column; }
+.item-info strong { font-size: .95rem; }
+.item-info span { font-size: .78rem; color: #aaa; }
+.item-controls { display: flex; align-items: center; gap: 4px; }
+.item-controls button { width: 28px; height: 28px; border: 1px solid #ddd; background: white; border-radius: 6px; cursor: pointer; font-size: .9rem; display: flex; align-items: center; justify-content: center; }
+.item-controls span { width: 24px; text-align: center; font-size: .9rem; font-weight: 600; }
+.btn-remove { border-color: #ffcdd2 !important; color: #e53935; }
+.loading { padding: 40px; text-align: center; color: #aaa; }
