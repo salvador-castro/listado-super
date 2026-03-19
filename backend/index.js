@@ -8,7 +8,13 @@ import listRoutes from './routes/list.js'
 dotenv.config()
 
 const app = express()
-app.use(cors())
+
+app.use(cors({
+  origin: [
+    'http://localhost:5173',
+    'https://listado-super-front.vercel.app'
+  ]
+}))
 app.use(express.json())
 
 mongoose.connect(process.env.MONGODB_URI)
@@ -18,6 +24,12 @@ mongoose.connect(process.env.MONGODB_URI)
 app.use('/api/products', productRoutes)
 app.use('/api/list', listRoutes)
 
-app.listen(process.env.PORT, () => {
-  console.log(`🚀 Server en http://localhost:${process.env.PORT}`)
-})
+// Para desarrollo local
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(process.env.PORT || 3001, () => {
+    console.log(`🚀 Server en http://localhost:${process.env.PORT || 3001}`)
+  })
+}
+
+// Para Vercel — exportar el app
+export default app
