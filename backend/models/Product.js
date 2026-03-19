@@ -1,4 +1,4 @@
-import mongoose from 'mongoose'
+const mongoose = require('mongoose')
 
 const productSchema = new mongoose.Schema({
   barcode: { type: String, unique: true, sparse: true },
@@ -9,4 +9,4 @@ const productSchema = new mongoose.Schema({
   unit: { type: String }
 }, { timestamps: true })
 
-export default mongoose.model('Product', productSchema)
+module.exports = mongoose.model('Product', productSchema)

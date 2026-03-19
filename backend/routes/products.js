@@ -1,6 +1,5 @@
-import express from 'express'
-import Product from '../models/Product.js'
-
+const express = require('express')
+const Product = require('../models/Product')
 const router = express.Router()
 
 router.get('/search', async (req, res) => {
@@ -31,4 +30,4 @@ router.post('/', async (req, res) => {
   }
 })
 
-export default router
+module.exports = router

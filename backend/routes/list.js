@@ -1,6 +1,5 @@
-import express from 'express'
-import ShoppingList from '../models/ShoppingList.js'
-
+const express = require('express')
+const ShoppingList = require('../models/ShoppingList')
 const router = express.Router()
 
 router.get('/', async (req, res) => {
@@ -67,4 +66,4 @@ router.delete('/', async (req, res) => {
   }
 })
 
-export default router
+module.exports = router

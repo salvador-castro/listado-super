@@ -1,4 +1,4 @@
-import mongoose from 'mongoose'
+const mongoose = require('mongoose')
 
 const shoppingListSchema = new mongoose.Schema({
   productId: { type: mongoose.Schema.Types.ObjectId, ref: 'Product', required: true },
@@ -7,4 +7,4 @@ const shoppingListSchema = new mongoose.Schema({
   addedAt: { type: Date, default: Date.now }
 })
 
-export default mongoose.model('ShoppingList', shoppingListSchema)
+module.exports = mongoose.model('ShoppingList', shoppingListSchema)
