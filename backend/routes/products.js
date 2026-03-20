@@ -1,33 +1,33 @@
-const express = require('express')
-const Product = require('../models/Product')
-const router = express.Router()
+const express = require("express");
+const Product = require("../models/Product");
+const router = express.Router();
 
-router.get('/search', async (req, res) => {
-  const { q } = req.query
-  if (!q) return res.json([])
+router.get("/search", async (req, res) => {
+  const { q } = req.query;
+  if (!q) return res.json([]);
   try {
-    const byBarcode = await Product.findOne({ barcode: q })
-    if (byBarcode) return res.json([byBarcode])
+    const byBarcode = await Product.findOne({ barcode: q });
+    if (byBarcode) return res.json([byBarcode]);
     const results = await Product.find({
       $or: [
-        { name: { $regex: q, $options: 'i' } },
-        { brand: { $regex: q, $options: 'i' } }
-      ]
-    }).limit(10)
-    res.json(results)
+        { name: { $regex: q, $options: "i" } },
+        { brand: { $regex: q, $options: "i" } },
+      ],
+    }).limit(10);
+    res.json(results);
   } catch (err) {
-    res.status(500).json({ error: err.message })
+    res.status(500).json({ error: err.message });
   }
-})
+});
 
-router.post('/', async (req, res) => {
+router.post("/", async (req, res) => {
   try {
-    const product = new Product(req.body)
-    await product.save()
-    res.status(201).json(product)
+    const product = new Product(req.body);
+    await product.save();
+    res.status(201).json(product);
   } catch (err) {
-    res.status(400).json({ error: err.message })
+    res.status(400).json({ error: err.message });
   }
-})
+});
 
-module.exports = router
+module.exports = router;
